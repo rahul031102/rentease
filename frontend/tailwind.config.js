@@ -23,6 +23,11 @@ export default {
         rust: "#D8643A",
         sage: "#9FC2AE",
       },
+      boxShadow: {
+        'premium': '0 20px 60px rgba(14,42,29,0.15), 0 4px 16px rgba(14,42,29,0.08)',
+        'card': '0 1px 3px rgba(14,42,29,0.08)',
+        'glow-rust': '0 0 32px rgba(216,100,58,0.35)',
+      },
     },
   },
   plugins: [],

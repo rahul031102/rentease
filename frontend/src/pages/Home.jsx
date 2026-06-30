@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import RentalTag from "../components/RentalTag.jsx";
 
 export default function Home() {
+  useEffect(() => {
+    const els = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => e.target.classList.toggle("visible", e.isIntersecting)),
+      { threshold: 0.12 }
+    );
+    els.forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <div className="bg-canvas">
       {/* HERO */}
-      <section className="bg-ink relative overflow-hidden">
+      <section
+        className="relative overflow-hidden"
+        style={{
+          background: "linear-gradient(160deg, #081A11 0%, #0E2A1D 50%, #0a2218 100%)",
+        }}
+      >
         <div className="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center relative">
           <div>
             <p className="font-mono text-xs tracking-[0.2em] text-sage uppercase mb-6">
@@ -80,7 +95,7 @@ export default function Home() {
             ["Delivered, not dragged", "We schedule delivery and pickup — no van rental, no scraped doorframes."],
             ["Fixed when it breaks", "Request maintenance from your account; we handle repairs, not you."],
           ].map(([title, desc], i) => (
-            <div key={title} className="bg-tag rounded-lg p-6 border border-ink/5">
+            <div key={title} className="bg-tag rounded-lg p-6 border border-ink/5 reveal">
               <p className="font-mono text-[11px] text-rust mb-3">0{i + 1}</p>
               <h3 className="font-display text-lg text-ink mb-2">{title}</h3>
               <p className="text-sm text-ink/60 leading-relaxed">{desc}</p>
@@ -91,7 +106,12 @@ export default function Home() {
 
       {/* CTA */}
       <section className="max-w-6xl mx-auto px-6 pb-24">
-        <div className="bg-ink rounded-2xl p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div
+          className="reveal rounded-2xl p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8"
+          style={{
+            background: "linear-gradient(135deg, #081A11 0%, #0E2A1D 100%)",
+          }}
+        >
           <div>
             <p className="font-mono text-xs tracking-[0.2em] text-sage uppercase mb-3">Moving cities for work or college?</p>
             <h2 className="font-display text-3xl md:text-4xl text-canvas max-w-lg">
