@@ -35,8 +35,16 @@ export default function ProductDetail() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-10">
-      <div className="bg-gradient-to-br from-brand-50 to-brand-100 rounded-xl h-72 flex items-center justify-center">
-        <ProductIcon subCategory={product.subCategory} className="w-32 h-32 [&>svg]:w-32 [&>svg]:h-32" />
+      <div className="bg-gradient-to-br from-brand-50 to-brand-100 rounded-2xl h-80 flex items-center justify-center p-6 relative overflow-hidden">
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="max-h-full max-w-full object-contain drop-shadow-[0_15px_30px_rgba(14,42,29,0.15)] transition-transform duration-500 hover:scale-105"
+          />
+        ) : (
+          <ProductIcon subCategory={product.subCategory} className="w-32 h-32 [&>svg]:w-32 [&>svg]:h-32" />
+        )}
       </div>
 
       <div>

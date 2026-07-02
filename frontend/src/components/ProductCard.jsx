@@ -57,19 +57,31 @@ export default function ProductCard({ product }) {
         className="h-44 flex items-center justify-center relative overflow-hidden"
         style={{
           background: "linear-gradient(135deg, #F4EFE2 0%, #EDE6D3 100%)",
+          transformStyle: "preserve-3d",
         }}
       >
-        <div
-          className="w-20 h-20 rounded-2xl flex items-center justify-center"
-          style={{
-            background: "rgba(255,255,255,0.7)",
-            backdropFilter: "blur(8px)",
-            boxShadow: "0 8px 32px rgba(14,42,29,0.12), inset 0 1px 0 rgba(255,255,255,0.9)",
-            transform: "translateZ(20px)",
-          }}
-        >
-          <ProductIcon subCategory={product.subCategory} className="w-10 h-10 text-ink" />
-        </div>
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="h-32 w-auto object-contain transition-transform duration-300 drop-shadow-[0_12px_20px_rgba(14,42,29,0.18)]"
+            style={{
+              transform: "translateZ(35px)",
+            }}
+          />
+        ) : (
+          <div
+            className="w-20 h-20 rounded-2xl flex items-center justify-center"
+            style={{
+              background: "rgba(255,255,255,0.7)",
+              backdropFilter: "blur(8px)",
+              boxShadow: "0 8px 32px rgba(14,42,29,0.12), inset 0 1px 0 rgba(255,255,255,0.9)",
+              transform: "translateZ(20px)",
+            }}
+          >
+            <ProductIcon subCategory={product.subCategory} className="w-10 h-10 text-ink" />
+          </div>
+        )}
 
         {/* Availability badge */}
         <div
@@ -78,6 +90,7 @@ export default function ProductCard({ product }) {
             background: available ? "rgba(22,163,74,0.1)" : "rgba(220,38,38,0.1)",
             color: available ? "#15803d" : "#dc2626",
             border: `1px solid ${available ? "rgba(22,163,74,0.2)" : "rgba(220,38,38,0.2)"}`,
+            transform: "translateZ(25px)",
           }}
         >
           {available ? "Available" : "Out of stock"}
